@@ -3,7 +3,10 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:layout_margin="4dp"
+    android:elevation="4dp"
+    android:background="@drawable/tasks_list_item_background">
     
     <TextView
         android:id="@+id/task_time"

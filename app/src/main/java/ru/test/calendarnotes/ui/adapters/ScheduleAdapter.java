@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -16,8 +17,8 @@ import ru.test.calendarnotes.data.TaskModel;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> {
 
-    private List<TaskModel> tasksList;
-    private Context context;
+    protected List<TaskModel> tasksList;
+    protected Context context;
 
     public ScheduleAdapter(Context context, List<TaskModel> tasksList){
         this.tasksList = tasksList;
@@ -46,16 +47,24 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
     class ScheduleViewHolder extends RecyclerView.ViewHolder{
 
         private TextView timeScope, briefTaskName;
+        private RecyclerView tasksRecycler;
+        //private Context context;
 
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
+            //this.context = context;
             timeScope = itemView.findViewById(R.id.time_scope);
             briefTaskName = itemView.findViewById(R.id.brief_task_name);
+            tasksRecycler = itemView.findViewById(R.id.inner_list);
         }
 
         void bindDataWithView(TaskModel task){
             timeScope.setText("14:00-15:00");
             briefTaskName.setText(task.getName());
+
+            TasksListAdapter tasksListAdapter = new TasksListAdapter(context, tasksList);
+            tasksRecycler.setLayoutManager(new LinearLayoutManager(context));
+            tasksRecycler.setAdapter(tasksListAdapter);
         }
     }
 }

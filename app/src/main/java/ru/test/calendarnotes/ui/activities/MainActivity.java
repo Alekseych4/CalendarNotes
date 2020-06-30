@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -47,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         TaskModel t2 = new TaskModel();
         t2.setName("Моё второе дело");
         schedule.add(t2);
+        schedule.add(t2);
 
         scheduleList = findViewById(R.id.schedule_list);
-        scheduleList.setLayoutManager(new GridLayoutManager(getBaseContext(), 3));
+        scheduleList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         scheduleList.setAdapter(new ScheduleAdapter(getBaseContext(), schedule));
     }
 
