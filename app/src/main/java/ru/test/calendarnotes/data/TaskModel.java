@@ -1,6 +1,7 @@
 package ru.test.calendarnotes.data;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 
 public class TaskModel {
     private int id;
