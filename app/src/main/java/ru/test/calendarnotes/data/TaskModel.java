@@ -1,12 +1,16 @@
 package ru.test.calendarnotes.data;
 
 
-import java.sql.Timestamp;
+import java.util.Date;
 
-public class TaskModel {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class TaskModel extends RealmObject {
+    @PrimaryKey
     private int id;
-    private Timestamp date_start;
-    private Timestamp date_finish;
+    private Date date_start;
+    private Date date_finish;
     private String name;
     private String description;
 
@@ -18,19 +22,19 @@ public class TaskModel {
         this.id = id;
     }
 
-    public Timestamp getDate_start() {
+    public Date getDate_start() {
         return date_start;
     }
 
-    public void setDate_start(Timestamp date_start) {
+    public void setDate_start(Date date_start) {
         this.date_start = date_start;
     }
 
-    public Timestamp getDate_finish() {
+    public Date getDate_finish() {
         return date_finish;
     }
 
-    public void setDate_finish(Timestamp date_finish) {
+    public void setDate_finish(Date date_finish) {
         this.date_finish = date_finish;
     }
 

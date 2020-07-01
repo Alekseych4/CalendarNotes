@@ -1,5 +1,6 @@
 package ru.test.calendarnotes.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +21,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
 import ru.test.calendarnotes.R;
 import ru.test.calendarnotes.data.TaskModel;
 import ru.test.calendarnotes.ui.adapters.ScheduleAdapter;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView scheduleList;
     private Gson gson;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+        Realm.init(getApplicationContext());
+        realm = Realm.getDefaultInstance();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getBaseContext(), NewTaskActivity.class);
+                startActivity(intent);
             }
         });
 
