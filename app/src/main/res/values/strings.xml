@@ -8,4 +8,7 @@
     <string name="save_new_task_btn">Сохранить задачу</string>
     <string name="task_saved_toast">Задача сохранена</string>
     <string name="descr">Подробное описание</string>
+    <string name="date_and_time">Дата и время:</string>
+    <string name="name_of_task">Название задачи:</string>
+    <string name="description_of_task">Описание задачи:</string>
 </resources>

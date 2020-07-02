@@ -10,9 +10,14 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class TaskViewModel extends ViewModel {
-
     private Realm realm = Realm.getDefaultInstance();
     private RealmResults<TaskModel> tasksForDay;
+
+    public TaskModel getTaskById(long id){
+        return realm.where(TaskModel.class)
+                .equalTo("id", id)
+                .findFirst();
+    }
 
     public RealmResults<TaskModel> getTasksForDay(long dayStart, long dayFinish) {
         tasksForDay = realm.where(TaskModel.class)

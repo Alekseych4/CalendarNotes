@@ -50,6 +50,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
     class TasksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView taskTime, taskName;
+        private TaskModel task;
 
         TasksViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +60,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
         }
 
         void bindTaskWithViews(TaskModel task){
+            this.task = task;
             taskName.setText(task.getName());
 
             Calendar c = Calendar.getInstance();
@@ -80,6 +82,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
             Log.d("onClick", "onClick");
             Intent intent = new Intent(context, DescriptionActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(DescriptionActivity.ID, task.getId());
             context.startActivity(intent);
         }
     }

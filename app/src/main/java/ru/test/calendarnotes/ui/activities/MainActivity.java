@@ -62,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
             initialDateSetup();
         }
 
-        Log.d("Main onCreate", DateUtils.formatDateTime(this,
-                dayStartTime.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_TIME));
-
         datePicker.setOnDateChangedListener(dateChangedListener);
 
 
