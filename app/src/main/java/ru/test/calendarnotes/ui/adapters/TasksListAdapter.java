@@ -1,6 +1,7 @@
 package ru.test.calendarnotes.ui.adapters;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Calendar;
 import java.util.List;
 
 import ru.test.calendarnotes.R;
@@ -54,7 +56,19 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
 
         void bindTaskWithViews(TaskModel task){
             taskName.setText(task.getName());
-            taskTime.setText("14:00-15:00");
+
+            Calendar c = Calendar.getInstance();
+            c.setTimeInMillis(task.getDateStart());
+            Calendar f = Calendar.getInstance();
+            f.setTimeInMillis(task.getDateFinish());
+
+            taskTime.setText(DateUtils.formatDateTime(context,
+                    c.getTimeInMillis(),
+                    DateUtils.FORMAT_SHOW_TIME)
+                    + " - " +
+                    DateUtils.formatDateTime(context,
+                            f.getTimeInMillis(),
+                            DateUtils.FORMAT_SHOW_TIME));
         }
     }
 }

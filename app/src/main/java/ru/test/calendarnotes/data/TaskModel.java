@@ -8,34 +8,34 @@ import io.realm.annotations.PrimaryKey;
 
 public class TaskModel extends RealmObject {
     @PrimaryKey
-    private int id;
-    private Date date_start;
-    private Date date_finish;
+    private long id;
+    private long dateStart;
+    private long dateFinish;
     private String name;
     private String description;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Date getDate_start() {
-        return date_start;
+    public long getDateStart() {
+        return dateStart;
     }
 
-    public void setDate_start(Date date_start) {
-        this.date_start = date_start;
+    public void setDateStart(long dateStart) {
+        this.dateStart = dateStart;
     }
 
-    public Date getDate_finish() {
-        return date_finish;
+    public long getDateFinish() {
+        return dateFinish;
     }
 
-    public void setDate_finish(Date date_finish) {
-        this.date_finish = date_finish;
+    public void setDateFinish(long dateFinish) {
+        this.dateFinish = dateFinish;
     }
 
     public String getName() {
