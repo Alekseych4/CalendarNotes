@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //modelSerialization(t);
+        schedule = new ArrayList<>();
+
         addTimeIntervals();
 
         formList();
@@ -125,27 +127,35 @@ public class MainActivity extends AppCompatActivity {
             //dayStartTime.set(Calendar.HOUR, 0);
             dayStartTime.set(Calendar.MILLISECOND, 0);
 
-//            adapterListener.onDateClick();
+            Log.d("After Change", Long.toString(dayStartTime.getTimeInMillis()));
+
             formList();
+            addTimeIntervals();
             scheduleAdapter.notifyDataSetChanged();
-            //adapterListener.onDateClick();
+            adapterListener.onDateClick();
         }
     };
 
+
     private void addTimeIntervals(){
-        schedule = new ArrayList<>();
+        schedule.clear();
+        List<TimeIntervalsModel> temp = new ArrayList<>();
+        Log.d("addTimeIntervals dayStartTime", Long.toString(dayStartTime.getTimeInMillis()));
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.setTimeInMillis(dayStartTime.getTimeInMillis());
+        Log.d("addTimeIntervals currentTime", Long.toString(currentTime.getTimeInMillis()));
         for (int i = 0; i < 24; i++){
             TimeIntervalsModel intervals = new TimeIntervalsModel();
 
-            intervals.setTimeStart(dayStartTime.getTimeInMillis());
+            intervals.setTimeStart(currentTime.getTimeInMillis());
 
-            dayStartTime.add(Calendar.HOUR_OF_DAY, 1);
+            currentTime.add(Calendar.HOUR_OF_DAY, 1);
 
-            intervals.setTimeFinish(dayStartTime.getTimeInMillis());
+            intervals.setTimeFinish(currentTime.getTimeInMillis());
 
-            schedule.add(intervals);
+            temp.add(intervals);
         }
-        initialDateSetup();
+        schedule.addAll(temp);
     }
 
     public interface OnDateChangedListener{
@@ -155,7 +165,10 @@ public class MainActivity extends AppCompatActivity {
     private void formList(){
         long start = dayStartTime.getTimeInMillis();
         dayStartTime.add(Calendar.DATE, 1);
+        Log.d("formList", Long.toString(dayStartTime.getTimeInMillis()));
         taskModelList = taskViewModel.getTasksForDay(start, dayStartTime.getTimeInMillis());
         Log.d("MAIN LIST", Integer.toString(taskModelList.size()));
+        dayStartTime.add(Calendar.DATE, -1);
+        Log.d("formList", Long.toString(dayStartTime.getTimeInMillis()));
     }
 }

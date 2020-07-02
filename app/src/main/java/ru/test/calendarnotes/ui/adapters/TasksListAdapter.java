@@ -1,7 +1,9 @@
 package ru.test.calendarnotes.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import ru.test.calendarnotes.R;
 import ru.test.calendarnotes.data.TaskModel;
+import ru.test.calendarnotes.ui.activities.DescriptionActivity;
 
 public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.TasksViewHolder> {
 
@@ -44,12 +47,13 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
         return taskModelList.size();
     }
 
-    class TasksViewHolder extends RecyclerView.ViewHolder{
+    class TasksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView taskTime, taskName;
 
         TasksViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             taskTime = itemView.findViewById(R.id.task_time);
             taskName = itemView.findViewById(R.id.task_name);
         }
@@ -69,6 +73,14 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
                     DateUtils.formatDateTime(context,
                             f.getTimeInMillis(),
                             DateUtils.FORMAT_SHOW_TIME));
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d("onClick", "onClick");
+            Intent intent = new Intent(context, DescriptionActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 }

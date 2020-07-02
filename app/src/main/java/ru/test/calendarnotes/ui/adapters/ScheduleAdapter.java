@@ -1,7 +1,9 @@
 package ru.test.calendarnotes.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import ru.test.calendarnotes.R;
 import ru.test.calendarnotes.data.TaskModel;
 import ru.test.calendarnotes.data.TaskViewModel;
 import ru.test.calendarnotes.data.TimeIntervalsModel;
+import ru.test.calendarnotes.ui.activities.DescriptionActivity;
 import ru.test.calendarnotes.ui.activities.MainActivity;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> implements MainActivity.OnDateChangedListener {
@@ -83,6 +86,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             Calendar f = Calendar.getInstance();
             c.setTimeInMillis(timeIntervals.getTimeStart());
             f.setTimeInMillis(timeIntervals.getTimeFinish());
+            //Log.d("ScheduleAdapter", f.toString());
 
             timeScope.setText(DateUtils.formatDateTime(context,
                     c.getTimeInMillis(),
@@ -103,12 +107,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
                 tasksForHour = new ArrayList<>();
             }
 
+//            Log.d("innerListBinding",Integer.toString(tasksForHour.size()));
             tasksListAdapter = new TasksListAdapter(context, tasksForHour);
             tasksRecycler.setLayoutManager(new LinearLayoutManager(context));
             tasksRecycler.setAdapter(tasksListAdapter);
         }
 
-    }
+     }
 
 
 }

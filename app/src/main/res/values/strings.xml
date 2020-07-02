@@ -7,4 +7,5 @@
     <string name="set_date_and_time">Задать дату и время:</string>
     <string name="save_new_task_btn">Сохранить задачу</string>
     <string name="task_saved_toast">Задача сохранена</string>
+    <string name="descr">Подробное описание</string>
 </resources>
